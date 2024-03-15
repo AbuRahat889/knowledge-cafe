@@ -1,19 +1,30 @@
 
+import { useState } from 'react'
 import './App.css'
 import Blogs from './conponents/Blogs/Blogs'
 import Bookmarks from './conponents/Bookmarks/Bookmarks'
 import Header from './conponents/Header/Header'
 
 function App() {
+  //bookMark handel
+  const [bookmarks , setBookmarks] = useState([]);
+  const handelBookmark = blog =>{
+    const newBookmarks = [...bookmarks, blog]
+    setBookmarks(newBookmarks);
+  }
+
+
   return (
     <>
-      <h1 className='text-4xl'>Vite + React</h1>
       <hr />
       <Header></Header>
       <hr />
       <div className='md:flex mt-10 gap-8'>
-        <Blogs></Blogs>
-        <Bookmarks></Bookmarks>
+        <Blogs  
+        handelBookmark={ handelBookmark}></Blogs>
+        
+        <Bookmarks 
+        bookmarks={bookmarks}></Bookmarks>
       </div>
       
      
